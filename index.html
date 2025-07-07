@@ -52,6 +52,80 @@
   70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
   100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
 }
+
+/* Navbar Dasar */
+.navbar {
+  background-color: #111827;
+  color: white;
+  padding: 1rem 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+/* Menu */
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 1rem;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-menu a:hover {
+  color: #25D366;
+}
+
+/* Tombol hamburger */
+.menu-toggle {
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: none;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .nav-menu.show {
+    display: flex;
+  }
+
+  .nav-menu li {
+    padding: 0.5rem 0;
+  }
+}
+
+
   </style>
 </head>
 <body class="bg-white text-gray-800">
@@ -65,17 +139,23 @@
 
   <!-- Header -->
   <header class="bg-white shadow sticky top-0 z-40">
-    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-      <h1 class="text-2xl font-bold text-blue-600">Jokidit</h1>
-      <nav class="space-x-4">
-        <a href="#tentang" class="hover:text-blue-600">Tentang</a>
-        <a href="#layanan" class="hover:text-blue-600">Layanan</a>
-        <a href="#alur" class="hover:text-blue-600">Alur</a>
-        <a href="#faq" class="hover:text-blue-600">FAQ</a>
-        <a href="#kontak" class="hover:text-blue-600">Kontak</a>
+   <!-- Navbar -->
+<nav class="navbar">
+  <div class="container">
+    <div class="logo">Jokidit</div>
 
-      </nav>
-    </div>
+    <!-- Tombol Hamburger -->
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+    <!-- Menu Utama -->
+    <ul class="nav-menu" id="navMenu">
+      <li><a href="#layanan">Layanan</a></li>
+      <li><a href="#tentang">Tentang</a></li>
+      <li><a href="#kontak">Kontak</a></li>
+    </ul>
+  </div>
+</nav>
+
   </header>
 
   <!-- Hero -->
@@ -234,6 +314,11 @@
   <!-- Script AOS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>AOS.init();</script>
-
+<script>
+function toggleMenu() {
+  const nav = document.getElementById('navMenu');
+  nav.classList.toggle('show');
+}
+</script>
 </body>
 </html>
